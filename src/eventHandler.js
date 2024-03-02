@@ -2,10 +2,12 @@
 const eventHandler = {
   events: {},
   subscribe(eventName, fn) {
+    console.log('subscribe');
     this.events[eventName] = this.events[eventName] || [];
     this.events[eventName].push(fn);
   },
   remove(eventName, fn) {
+    console.log('unsubscribe');
     if (this.events[eventName]) {
       for (let i = 0; i < this.events[eventName].length; i += 1) {
         if (this.events[eventName][i] === fn) {
@@ -24,7 +26,6 @@ const eventHandler = {
   },
 };
 
-const CORRECT_MON_CLICKED = 'OnCorrectMonClicked';
-const WRONG_MON_CLICKED = 'OnWrongMonClicked';
+const MON_CLICKED = 'OnWrongMonClicked';
 
-export { eventHandler, CORRECT_MON_CLICKED, WRONG_MON_CLICKED };
+export { eventHandler, MON_CLICKED };
