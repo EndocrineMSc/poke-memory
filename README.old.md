@@ -1,2 +1,2 @@
-# cv-application
-Web-Application to generate a Curriculum Vitae. Project of "The Odin Project".
+# poke-memory-game
+A memory-type game using the pokeAPI. Was made for The Odin Project.
