@@ -1,28 +1,132 @@
+@font-face {
+  font-family: Moltors;
+  src: url('../public/fonts/Moltors-eZzgm.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: SugarBomb;
+  src: url("../public/fonts/SugarBomb-EapEW.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Pixel;
+  src: url("../public/fonts/PixelSport-nRVRV.ttf") format("truetype");
+}
+
+:root {
+  --beige: #dfe2ca;
+  --darkblue: #111f2d;
+  --darkturquoise: #38a6b4;
+  --midblue: #335570;
+  --darkgreen: #2a7b30;
+  --lightturquoise: #82ccd3;
+  --lightgreen: #57a768;
+  --red: #d44b32;
+  --turquoise: #5ae5eb;
+}
+
 body {
-  background-color: aliceblue;
+  background-image: linear-gradient(var(--darkblue), var(--darkturquoise), var(--lightturquoise), var(--darkturquoise), var(--darkblue));
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-family: SugarBomb, 'Times New Roman', Times, serif;
+  letter-spacing: 4px;
+  color: var(--red);
+  text-shadow: var(--beige) 3px 3px 5px;
+}
+
+.gameBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+
+  height: 70vh;
+  margin-top: 6rem;
+}
+
+.gameHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+}
+
+.rules {
+  font-size: 3rem;
+
+  font-family: Pixel, 'Times New Roman', Times, serif;
 }
 
 .cardField {
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
-  background-color: aqua;
-  gap: 20px;
-  justify-content: center;
+  gap: 10px;
+
+  max-width: 1100px;
+  min-height: 300px;
+
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
 }
 
-.card {
+button {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 
-  border: 2px solid blue;
+  background-image: linear-gradient(var(--darkgreen), var(--lightgreen), var(--darkgreen));
+  border: 5px groove var(--lightgreen);
+  border-radius: 5px;
 
-  width: 16%;
-  height: auto;
+  box-shadow: var(--darkblue) 5px 5px 5px 1px;
+
+  max-width: 200px;
+  min-height: 125px;
+
+  font-size: 1.3rem;
+  font-family: Moltors, 'Times New Roman', Times, serif;
+  color: white;
 }
 
-.card image {
-  background-color: black;
+button, .counterContainer {
+  background-image: linear-gradient(var(--darkgreen), var(--lightgreen), var(--darkgreen));
+  border: 5px groove var(--lightgreen);
+  border-radius: 5px;
+
+  box-shadow: var(--darkblue) 5px 5px 5px 1px;
+
+  font-family: Moltors, 'Times New Roman', Times, serif;
+  color: white;
+}
+
+.counterContainer {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 5px 10px 5px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  font-size: 1.3rem;
+  line-height: 2rem;
+
+  width: 240px;
+  height: 75px;
+}
+
+img {
+  width: 150px;
+  height: 150px;
 }
