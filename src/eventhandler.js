@@ -24,6 +24,7 @@ const eventHandler = {
   },
 };
 
-const TIMESPAN_EDITED = 'OnTimespanEdited';
+const CORRECT_MON_CLICKED = 'OnCorrectMonClicked';
+const WRONG_MON_CLICKED = 'OnWrongMonClicked';
 
-export { eventHandler, TIMESPAN_EDITED };
+export { eventHandler, CORRECT_MON_CLICKED, WRONG_MON_CLICKED };
