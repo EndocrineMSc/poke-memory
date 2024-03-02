@@ -1,16 +1,10 @@
 /* eslint-disable react/jsx-filename-extension */
-import Timeline from './components/Timeline';
-import GeneralInfo from './components/GeneralInfo';
+import './App.css';
+import CardField from './components/CardField';
 
 function App() {
-  // const details = ['Entwicklung Random Access Chlia', 'Nase popeln'];
-
   return (
-    <>
-      <GeneralInfo />
-      <Timeline headerText="Berufserfahrung" />
-      <Timeline headerText="Bildungsweg" />
-    </>
+    <CardField />
   );
 }
 
