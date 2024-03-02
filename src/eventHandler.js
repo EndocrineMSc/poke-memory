@@ -2,12 +2,10 @@
 const eventHandler = {
   events: {},
   subscribe(eventName, fn) {
-    console.log('subscribe');
     this.events[eventName] = this.events[eventName] || [];
     this.events[eventName].push(fn);
   },
   remove(eventName, fn) {
-    console.log('unsubscribe');
     if (this.events[eventName]) {
       for (let i = 0; i < this.events[eventName].length; i += 1) {
         if (this.events[eventName][i] === fn) {
