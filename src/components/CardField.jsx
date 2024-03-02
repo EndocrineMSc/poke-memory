@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import getPokeData from '../getPokeData';
 import Card from './Card';
-import { eventHandler, CORRECT_MON_CLICKED, WRONG_MON_CLICKED } from '../eventhandler';
+import { eventHandler, MON_CLICKED } from '../eventHandler';
 
 function CardField() {
   const [pokeData, setPokeData] = useState([]);
@@ -27,13 +27,13 @@ function CardField() {
     if (clickedMons.includes(pokeName)) {
       setClickedMons([]);
       getRandomPokemon();
-      eventHandler.invoke(WRONG_MON_CLICKED);
+      eventHandler.invoke(MON_CLICKED, false);
     } else {
       const newMons = clickedMons;
       newMons.push(pokeName);
       setClickedMons(newMons);
       getRandomPokemon();
-      eventHandler.invoke(CORRECT_MON_CLICKED);
+      eventHandler.invoke(MON_CLICKED, true);
       console.log(clickedMons);
     }
   };
