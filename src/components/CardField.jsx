@@ -10,9 +10,24 @@ import { eventHandler, MON_CLICKED } from '../eventHandler';
 function CardField() {
   const [pokeData, setPokeData] = useState([]);
   const [clickedMons, setClickedMons] = useState([]);
+  const [pokeBallUrl, setBallUrl] = useState('');
 
   useEffect(() => {
     getRandomPokemon();
+  }, []);
+
+  useEffect(() => {
+    const fetchPokeballImage = async () => {
+      try {
+        await fetch('https://pokeapi.co/api/v2/item/poke-ball/')
+          .then((response) => response.json())
+          .then((response) => setBallUrl(response.sprites.default));
+      } catch (error) {
+        console.error('error fetching data');
+      }
+    };
+
+    fetchPokeballImage();
   }, []);
 
   const getRandomIndex = () => {
@@ -22,19 +37,19 @@ function CardField() {
 
   const handleCardClick = (e) => {
     const pokeName = e.currentTarget.getAttribute('data-name');
-    console.log(pokeName);
 
     if (clickedMons.includes(pokeName)) {
       setClickedMons([]);
-      getRandomPokemon();
       eventHandler.invoke(MON_CLICKED, false);
+      setPokeData([]);
+      setTimeout(() => getRandomPokemon(), 500);
     } else {
       const newMons = clickedMons;
       newMons.push(pokeName);
       setClickedMons(newMons);
-      getRandomPokemon();
       eventHandler.invoke(MON_CLICKED, true);
-      console.log(clickedMons);
+      setPokeData([]);
+      setTimeout(() => getRandomPokemon(), 500);
     }
   };
 
@@ -48,7 +63,6 @@ function CardField() {
         indeces.push(index);
       }
     }
-    setPokeData([]);
     Promise.all(
       indeces.map((index) => getPokeData(index)
         .then(({ name, sprites }) => ({ name, sprite: sprites.front_default, id: uuidv4() }))),
@@ -60,8 +74,19 @@ function CardField() {
   return (
     <div className="cardField">
       { !pokeData[0] ? (
-        <div>loading</div>
-      )
+        [...Array(10)].map(() => (
+          <button
+            key={uuidv4()}
+            type="button"
+            className="cardButton"
+            aria-label="PokeCard loading"
+          >
+            <Card
+              image={pokeBallUrl}
+              name="loading"
+            />
+          </button>
+        )))
         : pokeData.map((data) => (
           <button
             key={data.id}
