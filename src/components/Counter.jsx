@@ -4,7 +4,7 @@ import { eventHandler, MON_CLICKED } from '../eventHandler';
 
 function Counter() {
   const [counter, setCounter] = useState(0);
-  const [best, setBest] = useState(0);
+  const [best, setBest] = useState(Number(JSON.parse(localStorage.getItem('best-score')) || 0));
 
   useEffect(() => {
     eventHandler.subscribe(MON_CLICKED, handleCounter);
@@ -27,6 +27,7 @@ function Counter() {
 
       if (newCounter > best) {
         setBest(newCounter);
+        localStorage.setItem('best-score', JSON.stringify(newCounter));
       }
 
       return newCounter;
