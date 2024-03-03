@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import getPokeData from '../getPokeData';
 import Card from './Card';
 import { eventHandler, MON_CLICKED } from '../eventHandler';
+import apiEndpoints from '../apiEndpoints';
 
 function CardField() {
   const [pokeData, setPokeData] = useState([]);
@@ -19,7 +20,7 @@ function CardField() {
   useEffect(() => {
     const fetchPokeballImage = async () => {
       try {
-        await fetch('https://pokeapi.co/api/v2/item/poke-ball/')
+        await fetch(apiEndpoints.getLoadingSprite)
           .then((response) => response.json())
           .then((response) => setBallUrl(response.sprites.default));
       } catch (error) {

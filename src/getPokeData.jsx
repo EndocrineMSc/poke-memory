@@ -1,6 +1,8 @@
+import apiEndpoints from './apiEndpoints';
+
 export default async function getPokeData(index) {
   try {
-    const pokeData = (await fetch(`https://pokeapi.co/api/v2/pokemon/${index}/`, {
+    const pokeData = (await fetch(apiEndpoints.getPokemon(index), {
       mode: 'cors',
       method: 'GET',
     })).json();
