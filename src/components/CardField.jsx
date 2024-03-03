@@ -51,7 +51,7 @@ function CardField() {
     setTimeout(() => getRandomPokemon(), 500);
   };
 
-  const getRandomPokemon = () => {
+  const getRandomPokemon = async () => {
     const indeces = [];
     for (let i = 0; i < 10; i += 1) {
       const index = getRandomIndex();
@@ -61,12 +61,13 @@ function CardField() {
         indeces.push(index);
       }
     }
-    Promise.all(
-      indeces.map((index) => getPokeData(index)
-        .then(({ name, sprites }) => ({ name, sprite: sprites.front_default, id: uuidv4() }))),
-    ).then((pokemonDataArray) => {
-      setPokeData(pokemonDataArray);
-    });
+    const pokemonDataArray = await Promise.all(
+      indeces.map(async (index) => {
+        const response = await getPokeData(index);
+        return { name: response.name, sprite: response.sprites.front_default, id: uuidv4() };
+      }),
+    );
+    setPokeData(pokemonDataArray);
   };
 
   return (
