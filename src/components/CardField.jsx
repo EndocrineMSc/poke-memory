@@ -41,16 +41,14 @@ function CardField() {
     if (clickedMons.includes(pokeName)) {
       setClickedMons([]);
       eventHandler.invoke(MON_CLICKED, false);
-      setPokeData([]);
-      setTimeout(() => getRandomPokemon(), 500);
     } else {
       const newMons = clickedMons;
       newMons.push(pokeName);
       setClickedMons(newMons);
       eventHandler.invoke(MON_CLICKED, true);
-      setPokeData([]);
-      setTimeout(() => getRandomPokemon(), 500);
     }
+    setPokeData([]);
+    setTimeout(() => getRandomPokemon(), 500);
   };
 
   const getRandomPokemon = () => {
